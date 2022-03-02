@@ -45,7 +45,7 @@ const AuthForm = () => {
     setIsLoading(false);
 
     if (!response.ok) {
-      throw new Error("Authentication Failed!");
+      alert("Authentication Failed!");
     }
 
     const data = await response.json();
@@ -53,7 +53,7 @@ const AuthForm = () => {
     const expirationTime = new Date(
       new Date().getTime() + +data.expiresIn * 1000
     );
-    authCtx.login(data.idToken, expirationTime);
+    authCtx.login(data.idToken, expirationTime.toISOString());
     history.replace("/");
   };
 
